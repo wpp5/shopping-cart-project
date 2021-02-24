@@ -13,6 +13,7 @@ Save the following clone to the desktop
 Nagivate from Command Line:
 cd Desktop/shopping-cart-project
 
+
 # Usage
 
 Run the following program:
