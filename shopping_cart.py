@@ -1,4 +1,6 @@
 #  shopping_cart.py
+import datetime
+
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -42,7 +44,8 @@ def to_usd(my_price):
 print("Hello and welcome to Mary's Market")
 
 # INFO CAPTURE 
-receiptTotal = 0
+receiptSubTotal = 0
+taxRate = .07
 productIDs = []
 while True:
     #try:
@@ -53,13 +56,31 @@ while True:
     else:
         productIDs.append(productID)
 
+#RECEIPT PRINTOUT
+print("---------------------------------")
+print("MARY'S MARKET")
+print("WWW.MARYS-MARKET.COM")
+print("---------------------------------")
+now = datetime.datetime.now()
+print("CHECKOUT AT:", now.strftime("%Y-%m-%d %I:%M %p"))
+print("---------------------------------")
+print("SELECTED PRODUCTS:")
 for productID in productIDs:
         corresponding_products = [item for item in products if str(item["id"])== str(productID)]
         corresponding_product = corresponding_products[0]
-        receiptTotal = receiptTotal + corresponding_product["price"]
-        print("SELECTED PRODUCT: " + corresponding_product["name"] + " " + str(corresponding_product["price"]))
+        receiptSubTotal = receiptSubTotal + corresponding_product["price"]
+        print("..." + corresponding_product["name"] + " " + "(" + to_usd(corresponding_product["price"])+")")
+print("---------------------------------")
+print("SUBTOTAL:",to_usd(receiptSubTotal))
+tax = taxRate * receiptSubTotal
+print("TAX:",to_usd(tax))
+receiptTotal = to_usd(tax + receiptSubTotal)
+print("TOTAL:",receiptTotal)
+print("---------------------------------")
+print("THANKS, WE'LL SEE YOU AGAIN SOON")
 
-        
+
+
     #if type(productID) == "str" :
         #break
     #else:
