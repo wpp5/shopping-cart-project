@@ -1,7 +1,13 @@
 #shopping_cart.py
+#Imported to print checkout time
 import datetime
+#Time in imported to simulate thinking
+import time
+delay = 1.5
 
 
+
+#database of store items
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -25,7 +31,7 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-
+#function that converts int, str, or float to USD format
 def to_usd(my_price):
     """
     Converts a numeric value to usd-formatted string, for printing and display purposes.
@@ -49,23 +55,32 @@ taxRate = .0875
 productIDs = []
 storeIDs = []
 
+#puts all of the item IDs in the database into a list 
 for ID in products:
   storeID = str(ID["id"])
   storeIDs.append(storeID)
-print(storeIDs)
 
 while True:
     #Collecting users items
-    productID = input("Please enter a product identifier or type done").lower()
+    productID = input("Please enter a product identifier. Type done if your shopping is complete").lower()
+    #Cross reference to check if ID is valid or if user enters done
+    #This avoids the program crashing because of invalid user input
     if productID in storeIDs or productID == "done":
         if productID == "done":
             break
         else:
             productIDs.append(productID)
     else:
+        time.sleep(delay)
         print("Hmm...it appears, you've entered an invalid entry! Try again")
 
+time.sleep(delay*1.5)
+
+
 #RECEIPT PRINTOUT
+print("")
+print("")
+print("")
 print("---------------------------------")
 print("MARY'S MARKET")
 print("WWW.MARYS-MARKET.COM")
@@ -74,6 +89,7 @@ now = datetime.datetime.now()
 print("CHECKOUT AT:", now.strftime("%Y-%m-%d %I:%M %p"))
 print("---------------------------------")
 print("SELECTED PRODUCTS:")
+#Uses for loop to print out price and name based on id number
 for productID in productIDs:
         corresponding_products = [item for item in products if str(item["id"])== str(productID)]
         corresponding_product = corresponding_products[0]
@@ -87,14 +103,3 @@ receiptTotal = to_usd(tax + receiptSubTotal)
 print("TOTAL:",receiptTotal)
 print("---------------------------------")
 print("THANKS, WE'LL SEE YOU AGAIN SOON")
-
-
-
-    #if type(productID) == "str" :
-        #break
-    #else:
-        #productIDs.append(productID)
-#except:
-    #print("Hmm...there appears to be an invalid entry! Try again")
-
-#print(productIDs)
