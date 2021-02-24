@@ -39,4 +39,32 @@ def to_usd(my_price):
 
 # TODO: write some Python code here to produce the desired output
 
-print(products)
+print("Hello and welcome to Mary's Market")
+
+# INFO CAPTURE 
+receiptTotal = 0
+productIDs = []
+while True:
+    #try:
+    #Collecting users items
+    productID = input("Please enter a product identifier or type done").lower()
+    if productID == "done":
+        break
+    else:
+        productIDs.append(productID)
+
+for productID in productIDs:
+        corresponding_products = [item for item in products if str(item["id"])== str(productID)]
+        corresponding_product = corresponding_products[0]
+        receiptTotal = receiptTotal + corresponding_product["price"]
+        print("SELECTED PRODUCT: " + corresponding_product["name"] + " " + str(corresponding_product["price"]))
+
+        
+    #if type(productID) == "str" :
+        #break
+    #else:
+        #productIDs.append(productID)
+#except:
+    #print("Hmm...there appears to be an invalid entry! Try again")
+
+#print(productIDs)
