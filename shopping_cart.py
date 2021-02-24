@@ -1,4 +1,4 @@
-#  shopping_cart.py
+#shopping_cart.py
 import datetime
 
 
@@ -45,16 +45,25 @@ print("Hello and welcome to Mary's Market")
 
 # INFO CAPTURE 
 receiptSubTotal = 0
-taxRate = .07
+taxRate = .0875
 productIDs = []
+storeIDs = []
+
+for ID in products:
+  storeID = str(ID["id"])
+  storeIDs.append(storeID)
+print(storeIDs)
+
 while True:
-    #try:
     #Collecting users items
     productID = input("Please enter a product identifier or type done").lower()
-    if productID == "done":
-        break
+    if productID in storeIDs or productID == "done":
+        if productID == "done":
+            break
+        else:
+            productIDs.append(productID)
     else:
-        productIDs.append(productID)
+        print("Hmm...it appears, you've entered an invalid entry! Try again")
 
 #RECEIPT PRINTOUT
 print("---------------------------------")
