@@ -1,4 +1,4 @@
-# shopping_cart.py
+#  shopping_cart.py
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
